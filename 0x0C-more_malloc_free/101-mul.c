@@ -11,15 +11,15 @@
  */
 int is_number(char *s)
 {
-    	while (*s)
-    	{
+	while (*s)
+	{
 		if (!isdigit(*s))
 		{
-	    		return (0);
+			return (0);
 		}
 		s++;
-    	}
-    	return (1);
+	}
+	return (1);
 }
 
 /**
@@ -31,17 +31,17 @@ int is_number(char *s)
  */
 void mul(char *num1, char *num2)
 {
-    	 long result;
+	long result;
 
-    	if (!is_number(num1) || !is_number(num2))
-    	{
+	if (!is_number(num1) || !is_number(num2))
+	{
 		printf("Error\n");
 		exit(98);
-    	}
+	}
 
-    	result = strtol(num1, NULL, 10) * strtol(num2, NULL, 10);
+	result = strtol(num1, NULL, 10) * strtol(num2, NULL, 10);
 
-    	printf("%lu\n", result);
+	printf("%lu\n", result);
 }
 
 /**
@@ -53,13 +53,14 @@ void mul(char *num1, char *num2)
  */
 int main(int argc, char *argv[])
 {
-    	if (argc != 3)
-    	{
+	if (argc != 3)
+	{
 		printf("Error\n");
 		exit(98);
-    	}
+	}
 
-    	mul(argv[1], argv[2]);
+	mul(argv[1], argv[2]);
 
-    	return (0);
+	return (0);
 }
+
