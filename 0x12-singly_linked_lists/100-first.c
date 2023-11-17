@@ -1,12 +1,14 @@
 #include <stdio.h>
 
 /**
- * my_startup_function - prints a message before the main function is executed
+ * my_startup_function - prints a message
+ * before the main function is executed
  */
 void my_startup_function(void) __attribute__ ((constructor));
 
 /**
- * my_startup_function - prints a message before the main function is executed
+ * my_startup_function - prints a message
+ * before the main function is executed
  */
 void my_startup_function(void)
 {
