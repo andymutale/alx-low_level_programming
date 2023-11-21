@@ -1,37 +1,59 @@
 #include "lists.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * free_listint_safe - Frees a listint_t linked list safely.
- * @h: Pointer to the head of the list.
- *
- * Return: The size of the list that was freed.
+ * free_listint_safe - frees a listint_t list
+ * @h: double pointer to the start of the list
+ * 
+ * Return: the size of the list that was free'd
  */
 size_t free_listint_safe(listint_t **h)
 {
-    listint_t *current = *h, *temp;
-    size_t count = 0;
+    listint_t *slow, *fast, *free_ptr;
+    size_t nodes = 0;
 
-    while (current != NULL)
+    if (h == NULL || *h == NULL)
     {
-        count++;
-        temp = current;
-        current = current->next;
-
-        /* Set the current node's next to NULL to break the loop */
-        temp->next = NULL;
-
-        /* Free the current node */
-        free(temp);
-
-        /* Check if we have visited this node before */
-        if (temp <= current)
-            break;
+        return (0);
     }
 
-    /* Set the head to NULL */
+    slow = *h;
+    fast = *h;
+
+    while (slow != NULL && fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if (slow == fast)
+        {
+            slow = *h;
+            while (slow != fast)
+            {
+                free_ptr = slow;
+                slow = slow->next;
+                free(free_ptr);
+                nodes++;
+            }
+            free_ptr = slow;
+            slow = slow->next;
+            free(free_ptr);
+            nodes++;
+            *h = NULL;
+            return (nodes);
+        }
+    }
+
+    slow = *h;
+    while (slow != NULL)
+    {
+        free_ptr = slow;
+        slow = slow->next;
+        free(free_ptr);
+        nodes++;
+    }
+
     *h = NULL;
 
-    return count;
+    return (nodes);
 }
