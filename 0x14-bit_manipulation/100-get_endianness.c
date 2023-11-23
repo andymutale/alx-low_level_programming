@@ -7,9 +7,8 @@
  */
 int get_endianness(void)
 {
-    	unsigned int check_endian = 1;
-    	char *byte_ptr = (char *)&check_endian;
+	unsigned int check_endian = 1;
+	char *byte_ptr = (char *)&check_endian;
 
-    	return (*byte_ptr);
+	return (*byte_ptr);
 }
-
